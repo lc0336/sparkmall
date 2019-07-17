@@ -24,9 +24,6 @@ class RandomDate {
     */
   def getRandomDate = {
     // 这次操作的相比上次的步长
-
-
-
     val timeStep = RandomNumUtil.randomLong(0, maxStepTime)
     lastDateTIme += timeStep
     new Date(lastDateTIme)
