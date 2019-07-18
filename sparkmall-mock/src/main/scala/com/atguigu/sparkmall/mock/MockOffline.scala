@@ -117,12 +117,12 @@ object MockOffline {
     * 生成 UserVisitAction 数据
     */
   def mockUserVisitAction: List[UserVisitAction] = {
-    val dateFormatter = new SimpleDateFormat("yyy-MM-dd")
-    val timeFormatter = new SimpleDateFormat("yyy-MM-dd HH:mm:ss")
+    val dateFormatter = new SimpleDateFormat("yyyy-MM-dd")
+    val timeFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
     // 开始日期
-    val fromDate = dateFormatter.parse("2019-03-20")
+    val fromDate = dateFormatter.parse("2019-07-15")
     // 结束日期
-    val toDate = dateFormatter.parse("2019-03-23")
+    val toDate = dateFormatter.parse("2019-07-23")
 
 
     val randomDate = RandomDate(fromDate, toDate, logAboutNum)
@@ -191,12 +191,13 @@ object MockOffline {
     val productInfoData = mockProductInfo
     val cityInfoData = mockCityInfo
 
+    System.setProperty("HADOOP_USER_NAME", "atguigu")
     val spark: SparkSession = SparkSession
       .builder()
-      .master("local[1]")
+      .master("local[2]")
       .appName("MockOffline")
       .enableHiveSupport()
-      .config("spark.sql.warehouse.dir", "hdfs://hadoop201:9000/user/hive/warehouse")
+      .config("spark.sql.warehouse.dir", "hdfs://hadoop103:9000/user/hive/warehouse")
       .getOrCreate()
     import spark.implicits._
     val sc = spark.sparkContext

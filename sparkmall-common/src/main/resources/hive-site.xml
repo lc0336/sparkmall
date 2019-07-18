@@ -3,7 +3,7 @@
 <configuration>
     <property>
         <name>javax.jdo.option.ConnectionURL</name>
-        <value>jdbc:mysql://hadoop201:3306/metastore?createDatabaseIfNotExist=true</value>
+        <value>jdbc:mysql://hadoop103:3306/metastore?createDatabaseIfNotExist=true</value>
         <description>JDBC connect string for a JDBC metastore</description>
     </property>
 
@@ -21,13 +21,13 @@
 
     <property>
         <name>javax.jdo.option.ConnectionPassword</name>
-        <value>aaa</value>
+        <value>123456</value>
         <description>password to use against metastore database</description>
     </property>
     <!-- zookeeper 地址-->
     <property>
         <name>hive.zookeeper.quorum</name>
-        <value>hadoop201,hadoop202,hadoop203</value>
+        <value>hadoop102,hadoop103,hadoop104</value>
         <description>The list of ZooKeeper servers to talk to. This is only needed for read/write locks.</description>
     </property>
     <!-- zookeeper 端口号 -->
