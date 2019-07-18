@@ -33,7 +33,8 @@ object CategoryTop10App {
 
     val args = argsList.map(info => Array(info.taskId, info.categoryId, info.clickCount, info.orderCount, info.payCount))
     //插入数据库
-    // JDBCUtil.executeBatchUpdate("insert into category_top10 values(?, ?, ?, ?, ?)", argsList)
+    JDBCUtil.executeUpdate("truncate table category_top10", null)
+    JDBCUtil.executeBatchUpdate("insert into category_top10 values(?, ?, ?, ?, ?)", args)
 
     argsList
 

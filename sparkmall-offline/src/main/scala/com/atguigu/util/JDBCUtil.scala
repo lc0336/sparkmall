@@ -7,6 +7,8 @@ import com.atguigu.sparkmall.common.util.ConfigurationUtil
 
 object JDBCUtil {
 
+
+
   val dataSource = initConnection()
 
   def initConnection() = {
@@ -52,4 +54,15 @@ object JDBCUtil {
     ps.executeBatch()
     con.commit()
   }
+
+
+  //提交单条数据
+  def executeUpdate(sql: String, value: Null) = {
+    val con = dataSource.getConnection()
+    con.setAutoCommit(false)//是否执行一条语句就自动提交一次
+    val ps = con.prepareStatement(sql)
+    ps.executeUpdate()
+    con.commit()
+  }
+
 }
