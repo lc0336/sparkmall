@@ -3,7 +3,7 @@ package com.atguigu
 import java.util.UUID
 
 import com.alibaba.fastjson.JSON
-import com.atguigu.app.{CategorySessionApp, CategoryTop10App}
+import com.atguigu.app.{AreaProductTop3, CategorySessionApp, CategoryTop10App, PageConversionApp}
 import com.atguigu.sparkmall.common.bean.UserVisitAction
 import com.atguigu.sparkmall.common.util.ConfigurationUtil
 import com.atguigu.util.{CategoryCountInfo, Condition}
@@ -65,16 +65,19 @@ object OfflineApp {
     userVisitActionRDD.checkpoint()
 
     val taskId = UUID.randomUUID().toString
-    println("开始任务 1")
-    val categoryTop10: List[CategoryCountInfo] = CategoryTop10App.statCategoryTop10(spark, userVisitActionRDD, taskId)
+    /*
+        println("开始任务 1")
+        val categoryTop10: List[CategoryCountInfo] = CategoryTop10App.statCategoryTop10(spark, userVisitActionRDD, taskId)
 
-    println("开始任务 2")
-    CategorySessionApp.statCategoryTop10Session(spark, categoryTop10, userVisitActionRDD, taskId)
+        println("开始任务 2")
+        CategorySessionApp.statCategoryTop10Session(spark, categoryTop10, userVisitActionRDD, taskId)
+
+        println("开始任务 3")
+        PageConversionApp.calcPageConversion(spark, userVisitActionRDD, readCondition.targetPageFlow, taskId)
+    */
+    // 需求4:
+    AreaProductTop3.statAreaProductTop3(spark, taskId)
 
 
   }
-
-
-
-
 }

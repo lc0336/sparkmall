@@ -1,9 +1,8 @@
-package com.atguigu.util
+package com.atguigu.sparkmall.common.util
 
 import java.util.Properties
 
 import com.alibaba.druid.pool.DruidDataSourceFactory
-import com.atguigu.sparkmall.common.util.ConfigurationUtil
 
 object JDBCUtil {
 
@@ -24,7 +23,7 @@ object JDBCUtil {
   }
 
   //执行单条语句
-  def executeBatchUpdate(sql: String, args: Array[Any]): Unit = {
+  def executeUpdate(sql: String, args: Array[Any]): Unit = {
     val con = dataSource.getConnection()
     con.setAutoCommit(false)//是否执行一条语句就自动提交一次
     val ps = con.prepareStatement(sql)
@@ -54,15 +53,4 @@ object JDBCUtil {
     ps.executeBatch()
     con.commit()
   }
-
-
-  //提交单条数据
-  def executeUpdate(sql: String, value: Null) = {
-    val con = dataSource.getConnection()
-    con.setAutoCommit(false)//是否执行一条语句就自动提交一次
-    val ps = con.prepareStatement(sql)
-    ps.executeUpdate()
-    con.commit()
-  }
-
 }

@@ -1,4 +1,4 @@
-package com.atguigu.sparkmall.mock.util
+package com.atguigu.mock.util
 
 import scala.collection.mutable.ListBuffer
 
