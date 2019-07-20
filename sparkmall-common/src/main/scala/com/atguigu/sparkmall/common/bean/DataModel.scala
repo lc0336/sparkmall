@@ -1,4 +1,4 @@
-package com.atguigu.common.bean
+package com.atguigu.sparkmall.common.bean
 
 /**
   * 用户表

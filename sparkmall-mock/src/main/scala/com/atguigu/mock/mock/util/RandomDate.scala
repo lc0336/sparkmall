@@ -1,4 +1,4 @@
-package com.atguigu.mock.util
+package com.atguigu.mock.mock.util
 
 import java.util.Date
 

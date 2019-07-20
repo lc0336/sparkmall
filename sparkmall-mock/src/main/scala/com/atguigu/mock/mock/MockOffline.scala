@@ -1,11 +1,13 @@
-package com.atguigu.sparkmall.mock
+package com.atguigu.mock.mock
+
+
 
 import java.text.SimpleDateFormat
 import java.util.UUID
 
 import com.atguigu.sparkmall.common.bean.{CityInfo, ProductInfo, UserInfo, UserVisitAction}
 import com.atguigu.sparkmall.common.util.ConfigurationUtil
-import com.atguigu.sparkmall.mock.util.{RandomDate, RandomNumUtil, RandomOptions}
+import com.atguigu.mock.mock.util.{RandomDate, RandomNumUtil, RandomOptions}
 import org.apache.spark.sql.{DataFrame, SparkSession}
 
 import scala.collection.mutable.ListBuffer
@@ -199,8 +201,8 @@ object MockOffline {
       .enableHiveSupport()
       .config("spark.sql.warehouse.dir", "hdfs://hadoop103:9000/user/hive/warehouse")
       .getOrCreate()
-    import spark.implicits._
     val sc = spark.sparkContext
+    import spark.implicits._
     val userVisitActionDF = sc.makeRDD(userVisitActionData).toDF
     val userInfoDF = sc.makeRDD(userInfoData).toDF
     val productInfoDF = sc.makeRDD(productInfoData).toDF
