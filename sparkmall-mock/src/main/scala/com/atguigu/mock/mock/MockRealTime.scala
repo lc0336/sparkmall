@@ -1,7 +1,8 @@
-package com.atguigu.mock.mock.util
+package com.atguigu.mock.mock
 
 import java.util.Properties
 
+import com.atguigu.mock.mock.util.{RandomNumUtil, RandomOptions}
 import com.atguigu.sparkmall.common.bean.CityInfo
 import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
 

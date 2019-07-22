@@ -2,7 +2,7 @@ package com.atguigu
 
 import com.atguigu.bean.AdsInfo
 import com.atguigu.sparkmall.common.util.MyKafkaUtil
-import com.atguigu.util.{BlackListApp, DayAreaAdsTop3App, DayAreaCityAdsApp}
+import com.atguigu.util.{BlackListApp, DayAreaAdsTop3App, DayAreaCityAdsApp, LastHourAdsClickApp}
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.spark.streaming.dstream.{DStream, InputDStream}
 import org.apache.spark.streaming.{Seconds, StreamingContext}
@@ -19,7 +19,7 @@ object RealTimeApp {
     val sc = new SparkContext(conf)
     // 3. 创建 StreamingContext
     val ssc = new StreamingContext(sc, Seconds(2))
-    //        ssc.checkpoint("hdfs://hadoop201:9000/sparkmall0225")
+
     sc.setCheckpointDir("hdfs://hadoop103:9000/sparkmall")
     // 4. 得到 DStream
     val recordDStream: InputDStream[ConsumerRecord[String, String]] = MyKafkaUtil.getDStream(ssc, "ads_log")
@@ -41,6 +41,9 @@ object RealTimeApp {
 
     // 需求3:每天每地区热门广告 Top3
     DayAreaAdsTop3App.calcDayAreaAdsTop3(ssc, lastDStream)
+
+    //需求4: 最近 1 小时广告点击量实时统计
+    LastHourAdsClickApp.statLastHourAdsClick(filteredAdsInfoDSteam: DStream[AdsInfo])
 
     ssc.start()
     ssc.awaitTermination()

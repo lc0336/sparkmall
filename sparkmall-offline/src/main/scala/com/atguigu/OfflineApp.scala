@@ -65,17 +65,17 @@ object OfflineApp {
     userVisitActionRDD.checkpoint()
 
     val taskId = UUID.randomUUID().toString
-    /*
-        println("开始任务 1")
-        val categoryTop10: List[CategoryCountInfo] = CategoryTop10App.statCategoryTop10(spark, userVisitActionRDD, taskId)
 
-        println("开始任务 2")
-        CategorySessionApp.statCategoryTop10Session(spark, categoryTop10, userVisitActionRDD, taskId)
+    println("开始任务 1")//Top10 热门品类
+    val categoryTop10: List[CategoryCountInfo] = CategoryTop10App.statCategoryTop10(spark, userVisitActionRDD, taskId)
 
-        println("开始任务 3")
-        PageConversionApp.calcPageConversion(spark, userVisitActionRDD, readCondition.targetPageFlow, taskId)
-    */
-    // 需求4:
+    println("开始任务 2")//Top10热门品类中每个品类的
+    CategorySessionApp.statCategoryTop10Session(spark, categoryTop10, userVisitActionRDD, taskId)
+
+    println("开始任务 3") //页面单跳转化率统计
+    PageConversionApp.calcPageConversion(spark, userVisitActionRDD, readCondition.targetPageFlow, taskId)
+
+    println("开始任务 4")//各区域热门商品 Top3
     AreaProductTop3.statAreaProductTop3(spark, taskId)
 
 
