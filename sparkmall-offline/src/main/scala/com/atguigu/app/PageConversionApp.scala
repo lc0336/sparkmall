@@ -62,7 +62,7 @@ object PageConversionApp {
       case (flow, rate) => Array[Any](taskId, flow, rate)
     }
     JDBCUtil.executeUpdate("truncate page_conversion_rate", null)
-    JDBCUtil.executeBatchUpdate("insert into page_conversion_rate values(?, ?, ?)", args)
+    JDBCUtil.("insert into page_conversion_rate values(?, ?, ?)", args)
   }
 }
 

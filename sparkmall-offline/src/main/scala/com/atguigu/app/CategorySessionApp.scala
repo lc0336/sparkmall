@@ -44,7 +44,7 @@ object CategorySessionApp {
     // 6. 写入到 mysql 数据库
     val categorySessionArr = sortedCategorySession.collect.map(item => Array(item.taskId, item.categoryId, item.sessionId, item.clickCount))
     JDBCUtil.executeUpdate("truncate category_top10_session_count", null)
-    JDBCUtil.executeBatchUpdate("insert into category_top10_session_count values(?, ?, ?, ?)", categorySessionArr)
+    JDBCUtil.("insert into category_top10_session_count values(?, ?, ?, ?)", categorySessionArr)
 
     */
 
