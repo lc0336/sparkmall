@@ -6,5 +6,7 @@ object test01 {
     println("dasdasd")
     println("dsadsad")
     println("dasds")
+    println("dasds")
+    println("dasds")
   }
 }
